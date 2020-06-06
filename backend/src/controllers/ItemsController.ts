@@ -1,4 +1,3 @@
-require('custom-env').env();
 import { Request, Response } from 'express';
 import knex from '../database/connection';
 
@@ -9,7 +8,7 @@ class ItemsController {
     return {
       id: item.id,
       title: item.title,
-      image_url: `${process.env.BASE_URL}/uploads/${item.image}`
+      image_url: `http://192.168.0.101:3333/uploads/${item.image}`
     }
   })
   return res.json(serializedItems);

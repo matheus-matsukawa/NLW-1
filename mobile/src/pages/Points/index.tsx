@@ -9,23 +9,23 @@ import * as Location from 'expo-location';
 import api from '../../services/api';
 
 interface Params {
-  uf: string,
-  city: string
+  uf: string;
+  city: string;
 }
 
 
 interface Item {
-  id: number,
-  title: string,
-  image_url: string
+  id: number;
+  title: string;
+  image_url: string;
 };
 interface Point {
-  id: number,
-  name: string,
-  image: string,
-  image_url: string,
-  latitude: number,
-  longitude: number,
+  id: number;
+  name: string;
+  image: string;
+  image_url: string;
+  latitude: number;
+  longitude: number;
 
 }
 
@@ -34,10 +34,11 @@ const Points = () => {
   const route = useRoute();
   const routeParams = route.params as Params;
 
-  const [selectedItems, setSelectedItems] = useState<number[]>([]);
+  const [points, setPoints] = useState<Point[]>([]);
   const [items, setItems] = useState<Item[]>([]);
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
-  const [points, setPoints] = useState<Point[]>([])
+  
 
   useEffect(() => {
     async function loadPosition() {
@@ -48,7 +49,7 @@ const Points = () => {
         return;
       }
 
-      const location = await Location.getCurrentPositionAsync();
+      const location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true });
 
       const { latitude, longitude } = location.coords;
 
@@ -76,7 +77,7 @@ const Points = () => {
     }).then(res => {
       setPoints(res.data);
     })
-  }, [selectedItems])
+  }, [selectedItems]);
   
 
   function handleNavigateBack() {

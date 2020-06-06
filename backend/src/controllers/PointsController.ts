@@ -1,4 +1,3 @@
-require('custom-env').env();
 import { Request, Response } from 'express';
 import knex from '../database/connection';
 
@@ -20,7 +19,7 @@ class PointsController {
       const serializedPoints = points.map(point => {
         return {
           ...point,
-          image_url: `${process.env.BASE_URL}/uploads/${point.image}`
+          image_url: `http://192.168.0.101:3333/uploads/${point.image}`
         }
       })
 
@@ -39,7 +38,7 @@ class PointsController {
 
     const serializedPoint = {
       ...point,
-       image_url: `${process.env.BASE_URL}/uploads/${point.image}`
+       image_url: `http://192.168.0.101:3333/uploads/${point.image}`
     }
 
 

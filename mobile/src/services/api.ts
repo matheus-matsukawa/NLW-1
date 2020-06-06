@@ -1,8 +1,7 @@
-require('custom-env').env();
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: `${process.env.BACKEND_URL}`
+  baseURL: 'http://192.168.0.101:3333'
 });
 
 export default api;
